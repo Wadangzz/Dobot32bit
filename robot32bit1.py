@@ -16,7 +16,7 @@ if result == 0:
     
     while isConnected:
   
-        run = plc.GetDevice("M0")
+        run = plc.GetDevice("M100")
 
         print(run)
         if run[1] == 1:
@@ -24,7 +24,9 @@ if result == 0:
             num = 3
             test.demotest(num)
                 
-            plc.SetDevice("M0",0)
+            plc.SetDevice("Y200",1)
+            time.sleep(0.01)
+            plc.SetDevice("Y200",0)
 
         time.sleep(1)
 
