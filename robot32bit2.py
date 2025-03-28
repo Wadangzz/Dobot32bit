@@ -5,7 +5,7 @@ import time
 test = dc.Dobot()
 plc = win32com.client.Dispatch("ActUtlType.ActUtlType")
 
-plc.ActLogicalStationNumber = 2
+plc.ActLogicalStationNumber = 6
 isConnected = False
 
 result = plc.Open()
@@ -21,11 +21,11 @@ if result == 0:
         print(run)
         if run[1] == 1:
 
-            num = 7
+            num = 3
             test.demotest(num)
                 
             plc.SetDevice("Y201",1)
-            time.sleep(0.01)
+            time.sleep(0.1)
             plc.SetDevice("Y201",0)
 
         time.sleep(1)

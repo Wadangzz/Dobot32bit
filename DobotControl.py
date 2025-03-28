@@ -1,15 +1,9 @@
-import threading
 import DobotDllType as dType
 
 class Dobot():
 
     def demotest(self,_num):
-
-
-        pick_point = {"x": 220, "y": 0, "z": -20, "r": 0}   # Pick 좌표
-        place_point = {"x": 250, "y": 100, "z": -20, "r": 0} # Place 좌표
-        safe_z = 30  # 안전 높이
-
+        
         CON_STR = {
             dType.DobotConnect.DobotConnect_NoError:  "DobotConnect_NoError",
             dType.DobotConnect.DobotConnect_NotFound: "DobotConnect_NotFound",
@@ -34,8 +28,6 @@ class Dobot():
             dType.SetARCCommonParams(api, 100, 100, isQueued = 1)
             dType.SetPTPJumpParams(api, jumpHeight=20, zLimit=150, isQueued=1)
 
-
-
             # #Async PTP Motion
             # for i in range(0, 5):
             #     if i % 2 == 0:
@@ -44,17 +36,34 @@ class Dobot():
             #         offset = -50
             #     lastIndex = dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 200 + offset, offset, offset, offset, isQueued = 1)[0]
                 # 1. Pick 작업
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], safe_z, pick_point["r"], isQueued=1)  # 접근
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], pick_point["z"], pick_point["r"], isQueued=1)  # 하강
-            dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], safe_z, pick_point["r"], isQueued=1)  # 다시 상승
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], safe_z, pick_point["r"], isQueued=1)  # 접근
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], pick_point["z"], pick_point["r"], isQueued=1)  # 하강
+            # dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, pick_point["x"], pick_point["y"], safe_z, pick_point["r"], isQueued=1)  # 다시 상승
 
-            # 2. Place 작업
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], safe_z, place_point["r"], isQueued=1)  # 접근
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], place_point["z"], place_point["r"], isQueued=1)  # 하강
+            # # 2. Place 작업
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], safe_z, place_point["r"], isQueued=1)  # 접근
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], place_point["z"], place_point["r"], isQueued=1)  # 하강
+            # dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
+            # dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], safe_z, place_point["r"], isQueued=1)  # 다시 상승
+
+            
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 154.8227, 16.3688, 23.9239, 6.0314, isQueued=1)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 195.3818, 95.8283, 74.2508, 26.1225, isQueued=1) 
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 236.1482, 19.1341, 150.7897, 4.6284, isQueued=1)  
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 165.6623, -118.2687, 77.2369, -35.5275, isQueued=1)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 212.2959, -136.5227, -32.5332, 0, isQueued=1)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 212.2959, -136.5227, -52.5332, 0, isQueued=1)
+            dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
+            dType.dSleep(500)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 212.2959, -136.5227, -32.5332, 0, isQueued=1)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 165.6623, -118.2687, 77.2369, -35.5275, isQueued=1)
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 236.1482, 19.1341, 150.7897, 4.6284, isQueued=1) 
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 195.3818, 95.8283, 74.2508, 26.1225, isQueued=1) 
+            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 154.8227, 16.3688, 23.9239, 6.0314, isQueued=1)
             dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
-            dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, place_point["x"], place_point["y"], safe_z, place_point["r"], isQueued=1)  # 다시 상승
-                    # #Async Home
+            dType.dSleep(500)
+
             lastIndex = dType.SetPTPCmd(api, dType.PTPMode.PTPMOVLXYZMode, 220 , 0 , -20, 0 , isQueued=1)[0] 
 
             #Start to Execute Command Queue
