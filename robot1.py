@@ -7,22 +7,22 @@ import threading
 
 HOST = '127.0.0.1'
 PORT = 8000
-
 stop_thread = False  # 종료 시그널용
 
 def send_pose_loop(sock):
+
     while test.isConnected1 and not stop_thread:
         pose = test.GetPose(1)
-        print("pose:", pose)
+        # print("pose:", pose)
 
         try:
-            data = struct.pack('Bffff', *pose)
+            data = struct.pack('<Bffff', pose[0] ,*pose[1:5])
             sock.sendall(data)
         except Exception as e:
             print(f"데이터 전송 오류: {e}")
             break
 
-        time.sleep(0.05)
+        time.sleep(0.01)
 
 test = dc.Dobot()
 test.connect(1,10)
@@ -51,9 +51,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         if msvcrt.kbhit():  # 키가 눌렸는지 확인
             key = msvcrt.getch()  # 눌린 키를 가져옴
             if key == b'q':
+                stop_thread = True
                 test.disconnect(1)  # 'q' 키가 눌렸다면
-                print('연결 해제 성공')
-                stop_thread = False
+                pose_thread.join()
                 break
             elif key == b'h':
                 test.Home(1)

@@ -3,23 +3,36 @@ import time
 import socket
 import msvcrt
 import struct
-
-test = dc.Dobot()
-
-test.connect(2,11)
+import threading
 
 HOST = '127.0.0.1'
 PORT = 8000
+stop_thread = False  # 종료 시그널용
+
+def send_pose_loop(sock):
+
+    while test.isConnected2 and not stop_thread:
+        pose = test.GetPose(2)
+
+        try:
+            data = struct.pack('<Bffff', pose[0] ,*pose[1:5])
+            sock.sendall(data)
+        except Exception as e:
+            print(f"데이터 전송 오류: {e}")
+            break
+
+        time.sleep(0.02)
+
+test = dc.Dobot()
+test.connect(2,11)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))  # 루프 바깥에서 딱 1번 연결
 
-    while test.isConnected2:
+    pose_thread = threading.Thread(target=send_pose_loop, args=(s,))
+    pose_thread.start()
 
-        pose = test.GetPose(2)
-        print(pose)
-        data = struct.pack('Bffff', *pose)
-        s.sendall(data)
+    while test.isConnected2:
 
         run = test.plc.GetDevice("X201")[1]
         device = test.plc.GetDevice("D3001")[1]
@@ -43,10 +56,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         if msvcrt.kbhit():  # 키가 눌렸는지 확인
             key = msvcrt.getch()  # 눌린 키를 가져옴
             if key == b'q':
+                stop_thread = True
                 test.disconnect(2)  # 예: 'q' 키가 눌렸다면
-                print('연결 해제 성공')
+                pose_thread.join()
                 break
             elif key == b'h':
                 test.Home(2)
 
-    time.sleep(0.05)
+        time.sleep(0.05)

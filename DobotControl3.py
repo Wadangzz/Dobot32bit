@@ -86,7 +86,7 @@ class Dobot():
             api = self.api3
         dType.DisconnectDobot(api)
         
-        print('연결 해제 완료')
+        print('로봇 연결 해제 완료')
         if self.plc.Close() == 0:
             if stationNum == 1:
                 self.isConnected1 = False
@@ -94,6 +94,7 @@ class Dobot():
                 self.isConnected2 = False
             elif stationNum == 3:
                 self.isConnected3 = False
+            print('PLC 연결 해제 완료')
 
     def GetPose(self,stationNum):
         if stationNum == 1:

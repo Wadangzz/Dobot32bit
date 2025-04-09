@@ -13,17 +13,15 @@ def send_pose_loop(sock):
 
     while test.isConnected3 and not stop_thread:
         pose = test.GetPose(3)
-        print("pose:", pose)
 
         try:
-            data = struct.pack('Bffff', 1, *[pose[1:5]])
+            data = struct.pack('<Bffff', pose[0] ,*pose[1:5])
             sock.sendall(data)
-
         except Exception as e:
             print(f"데이터 전송 오류: {e}")
             break
 
-        time.sleep(0.05)
+        time.sleep(0.02)
 
 test = dc.Dobot()
 test.connect(3,12)
@@ -54,11 +52,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if key == b'q':
                 stop_thread = True
                 test.disconnect(3)  # 예: 'q' 키가 눌렸다면
-                print('연결 해제 성공')
                 pose_thread.join()
                 break
             elif key == b'h':
                 test.Home(3)
 
-    time.sleep(0.05)
-s.close()
+        time.sleep(0.05)
+    
+
