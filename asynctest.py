@@ -1,5 +1,5 @@
 import asyncio
-import DobotControl2 as dc
+import DobotControl3 as dc
 import win32com.client
 import time
 
