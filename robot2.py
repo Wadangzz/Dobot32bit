@@ -13,6 +13,7 @@ def send_pose_loop(sock):
 
     while test.isConnected2 and not stop_thread:
         pose = test.GetPose(2)
+        print("pose:", pose)
 
         try:
             data = struct.pack('<Bffff', pose[0] ,*pose[1:5])
@@ -21,7 +22,7 @@ def send_pose_loop(sock):
             print(f"데이터 전송 오류: {e}")
             break
 
-        time.sleep(0.02)
+        time.sleep(0.001)
 
 test = dc.Dobot()
 test.connect(2,11)
@@ -35,8 +36,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     while test.isConnected2:
 
         run = test.plc.GetDevice("X201")[1]
+        homing = test.plc.GetDevice("X218")[1]
         device = test.plc.GetDevice("D3001")[1]
-
+        
         if run == 1:
 
             test.run2 = True
@@ -52,6 +54,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     test.plc.SetDevice("Y205",1)
                     time.sleep(0.1)
                     test.plc.SetDevice("Y205",0)
+
+        if homing == 1:
+            test.Home(2)
 
         if msvcrt.kbhit():  # 키가 눌렸는지 확인
             key = msvcrt.getch()  # 눌린 키를 가져옴
