@@ -147,8 +147,8 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
                 dType.SetPTPCmd(api, movj, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movj, 5.596028757095337, -267.10247802734375, 40.00385284423828, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.596034049987793, -267.1034240722656, 15.62419891357422, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movj, 5.596028757095337, -267.60247802734375, 40.00385284423828, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 5.596034049987793, -267.6034240722656, 15.62419891357422, -27.571914672851562, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
@@ -166,8 +166,8 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
                 dType.SetPTPCmd(api, movj, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.594710826873779, -288.54573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 4.594710826873779, -288.54573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 5.594710826873779, -288.94573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 4.594710826873779, -288.94573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
@@ -211,21 +211,21 @@ class Dobot():
                 
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -203.95887756347656, 156.9364013671875, 0, isQueued=1) 
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -203.95887756347656, 156.9364013671875, 0, isQueued=1) 
-                dType.SetPTPCmd(api, movl, 5.582981109619141, -252.56048583984375, 156.9364013671875, 0, isQueued=1)    
-                dType.SetPTPCmd(api, movl, 5.582981109619141, -252.56048583984375, 150.9364013671875, 0, isQueued=1)    
+                dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 156.9364013671875, 0, isQueued=1)    
+                dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 150.9364013671875, 0, isQueued=1)    
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 gripIndex1 = dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.582981109619141, -252.56048583984375, 156.9364013671875, 0, isQueued=1)    
+                dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 156.9364013671875, 0, isQueued=1)    
                 dType.SetPTPCmd(api, movj, 5.582981109619141, -196.79473876953125, 156.9364013671875, 0, isQueued=1)    
                 dType.SetARCCmd(api, [75.353515625, -181.7982940673828, 152.9364013671875, 22.73912811279297], 
-                                [193.8436737060547, 0.5975320339202881, 40.24906921386719, 89.40617370605469], isQueued=1 )
-                dType.SetPTPCmd(api, movl, 193.84396362304688, 0.5975320339202881, 18.2476806640625, 89.40254211425781, isQueued=1)
+                                [196.90408325195312, -2.6424760818481445, 40.249359130859375, 89.40617370605469], isQueued=1 )
+                dType.SetPTPCmd(api, movl, 196.90408325195312, -2.6424760818481445, 21.2576806640625, 89.40617370605469, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)
                 gripIndex2 = dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 193.84396362304688, 0.0574142932891846, 50.2476806640625, 89.40254211425781, isQueued=1)
+                dType.SetPTPCmd(api, movl, 196.90408325195312, -2.6424760818481445, 50.249359130859375, 89.40617370605469, isQueued=1)
                 # dType.SetPTPCmd(api, movj, -2.462111282348633, -189.3157958984375, 78.2039566040039, -94.13316345214844, isQueued=1)
 
             elif _Device == 1:
@@ -233,18 +233,18 @@ class Dobot():
                 
                 dType.SetPTPCmd(api, movj, -0.7725620269775391, -204.97116088867188, 114.29161834716797, 0 , isQueued=1)
                 dType.SetPTPCmd(api, movj, 59.901798248291016, -196.02142333984375, 114.29156494140625, 17.208480834960938 , isQueued=1)     
-                dType.SetARCCmd(api, [138.06761169433594, -140.7730255126953, 53.834869384765625, 44.66006088256836], 
-                                [186.84396362304688, -1.0574142932891846, 50.2476806640625, 89.40254211425781], isQueued=1 )
-                dType.SetPTPCmd(api, movl, 186.84384155273438, -1.057413339614868, 14.12774658203125, 89.40254211425781, isQueued=1)
+                dType.SetARCCmd(api, [138.06761169433594, -140.7730255126953, 80.834869384765625, 44.66006088256836], 
+                                [186.84396362304688, -3.5974104404449463, 50.2476806640625, 89.40254211425781], isQueued=1 )
+                dType.SetPTPCmd(api, movl, 186.84384155273438, -3.5974104404449463, 17.12774658203125, 89.40254211425781, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 gripIndex1 = dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 186.84384155273438, -1.057413339614868, 70.12774658203125, 89.40254211425781, isQueued=1)
-                dType.SetPTPCmd(api, movl, 290.84384155273438, -1.057413339614868, 70.12774658203125, 89.40254211425781, isQueued=1)
+                dType.SetPTPCmd(api, movl, 186.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
+                dType.SetPTPCmd(api, movl, 290.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 gripIndex2 = dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 186.84384155273438, -1.057413339614868, 70.12774658203125, 89.40254211425781, isQueued=1)
+                dType.SetPTPCmd(api, movl, 186.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
                 # dType.SetPTPCmd(api, movj, -2.462111282348633, -189.3157958984375, 78.2039566040039, -94.13316345214844, isQueued=1)
 
             lastIndex = dType.SetPTPCmd(api, movj, -0.7725620269775391, -204.97116088867188, 114.29161834716797, 0 , isQueued=1)[0] 
@@ -299,14 +299,14 @@ class Dobot():
                 dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1)    
-                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
-                                [72.70623779296875, 250.2193603515625, 134.89944458007812, 183.05303955078125], isQueued=1 )
-                dType.SetPTPCmd(api, movl, 72.71221160888672, 250.23992919921875, 52.801544189453125, 181.3735809326172, isQueued=1)
+                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
+                                [55.460655212402344, 224.66812133789062, 100.73353576660156, 183.70411682128906], isQueued=1 )
+                dType.SetPTPCmd(api, movl, 55.46128463745117, 224.67137145996094, 68.33453369140625, 183.7054901123047, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 72.71221160888672, 250.23992919921875, 134.89944458007812, 181.3735809326172, isQueued=1)
-                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
+                dType.SetPTPCmd(api, movl, 55.46128463745117, 224.67137145996094, 100.73353576660156, 183.7054901123047, isQueued=1)
+                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
                                 [259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344], isQueued=1 )
 
             elif _Device == 2:
@@ -320,16 +320,16 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1)    
                 dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
-                                [17.388887405395508, 247.11630249023438, 134.89944458007812, 183.0537872314453], isQueued=1 )
-                dType.SetPTPCmd(api, movl, 17.388887405395508, 247.11630249023438, 52.801544189453125, 183.0537872314453, isQueued=1)
+                                [6.500369548797607, 223.6554718017578, 100.73333740234375, 182.9855194091797], isQueued=1 )
+                dType.SetPTPCmd(api, movl, 6.500369548797607, 223.6554718017578, 68.33453369140625, 182.9855194091797, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 17.388887405395508, 247.11630249023438, 134.89944458007812, 183.0537872314453, isQueued=1)
-                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
+                dType.SetPTPCmd(api, movl, 6.500369548797607, 223.6554718017578, 100.73333740234375, 182.9855194091797, isQueued=1)
+                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
                                 [259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344], isQueued=1 )
 
-            elif _Device == 3:
+            elif _Device == 4:
 
                 dType.SetPTPCmd(api, movj, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1) 
                 dType.SetPTPCmd(api, movj, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1) 
@@ -340,15 +340,15 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1)    
                 dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
-                              [-37.93241500854492, 248.44430541992188, 134.89944458007812, 183.0537872314453], isQueued=1 )
-                dType.SetPTPCmd(api, movl, -37.93241500854492, 248.44430541992188, 52.801544189453125, 183.0537872314453, isQueued=1)
+                              [-41.87975311279297, 224.66201782226562, 100.73306274414062, 182.98736572265625], isQueued=1 )
+                dType.SetPTPCmd(api, movl, -41.87975311279297, 224.66201782226562, 68.33453369140625, 182.98736572265625, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
-                dType.SetPTPCmd(api, movl, -37.93241500854492, 248.44430541992188, 134.89944458007812, 183.0537872314453, isQueued=1)
-                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
+                dType.SetPTPCmd(api, movl, -41.87975311279297, 224.66201782226562, 100.73306274414062, 182.98736572265625, isQueued=1)
+                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
                                 [259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344], isQueued=1 )
-
+                
                 
             lastIndex = dType.SetPTPCmd(api, movj, 259.4306335449219, 23.712833404541016, 81.51910400390625, 91.5084228515625 , isQueued=1)[0] 
 
