@@ -21,6 +21,8 @@ def send_pose_loop(sock):
         except Exception as e:
             print(f"데이터 전송 오류: {e}")
             break
+        if not test.isConnected1:
+            break
 
         time.sleep(0.001)
 
