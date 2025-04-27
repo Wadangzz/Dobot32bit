@@ -1,4 +1,4 @@
-import DobotControl3 as dc
+import DobotControl as dc
 import time
 import socket
 import struct
@@ -11,7 +11,7 @@ stop_thread = False  # 종료 시그널용
 
 def send_pose_loop(sock):
 
-    while test.isConnected1 and not stop_thread:
+    while test.bot[1]["isConnected"] and not stop_thread:
         pose = test.GetPose(1)
         print("pose:", pose)
 
@@ -21,7 +21,7 @@ def send_pose_loop(sock):
         except Exception as e:
             print(f"데이터 전송 오류: {e}")
             break
-        if not test.isConnected1:
+        if not test.bot[1]["isConnected"]:
             break
 
         time.sleep(0.001)
@@ -35,7 +35,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     pose_thread = threading.Thread(target=send_pose_loop, args=(s,))
     pose_thread.start()
 
-    while test.isConnected1:
+    while test.bot[1]["isConnected"]:
 
         run = test.plc.GetDevice("X200")[1]
         homing = test.plc.GetDevice("X217")[1]
@@ -43,10 +43,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         if run == 1:
 
-            test.run1 = True
-            test.robot1(device)
+            test.bot[1]["run"] = True
+            test.robot(1,device)
         
-            if not test.run1:
+            if not test.bot[1]["run"]:
                 test.plc.SetDevice("Y200",1)
                 time.sleep(0.1)
                 test.plc.SetDevice("Y200",0)

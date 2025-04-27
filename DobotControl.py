@@ -122,9 +122,9 @@ class Dobot():
 
             dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
             dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
-            dType.SetWAITCmd(api, 500, isQueued=1)
+            dType.SetWAITCmd(api, 250, isQueued=1)
             dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
-            dType.SetWAITCmd(api, 500, isQueued=1)
+            dType.SetWAITCmd(api, 250, isQueued=1)
             dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
             dType.SetPTPCmd(api, movj, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
 
@@ -136,9 +136,9 @@ class Dobot():
                 dType.SetPTPCmd(api, movl, 5.594710826873779, -288.94573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
                 dType.SetPTPCmd(api, movl, 4.594710826873779, -288.94573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
 
-            dType.SetWAITCmd(api, 500, isQueued=1)
+            dType.SetWAITCmd(api, 250, isQueued=1)
             dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
-            dType.SetWAITCmd(api, 500, isQueued=1)
+            dType.SetWAITCmd(api, 250, isQueued=1)
             dType.SetPTPCmd(api, movl, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
 
         # Station 2 specific movements
@@ -148,7 +148,7 @@ class Dobot():
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -203.95887756347656, 156.9364013671875, 0, isQueued=1) 
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 156.9364013671875, 0, isQueued=1)    
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 150.9364013671875, 0, isQueued=1)    
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 gripIndex1 = dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 5.582981109619141, -258.56048583984375, 156.9364013671875, 0, isQueued=1)    
@@ -156,7 +156,7 @@ class Dobot():
                 dType.SetARCCmd(api, [75.353515625, -181.7982940673828, 152.9364013671875, 22.73912811279297], 
                                 [196.90408325195312, -2.6424760818481445, 40.249359130859375, 89.40617370605469], isQueued=1 )
                 dType.SetPTPCmd(api, movl, 196.90408325195312, -2.6424760818481445, 21.2576806640625, 89.40617370605469, isQueued=1)
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)
                 gripIndex2 = dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
@@ -168,12 +168,12 @@ class Dobot():
                 dType.SetARCCmd(api, [138.06761169433594, -140.7730255126953, 80.834869384765625, 44.66006088256836], 
                                 [186.84396362304688, -3.5974104404449463, 50.2476806640625, 89.40254211425781], isQueued=1 )
                 dType.SetPTPCmd(api, movl, 186.84384155273438, -3.5974104404449463, 17.12774658203125, 89.40254211425781, isQueued=1)
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 gripIndex1 = dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 186.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
                 dType.SetPTPCmd(api, movl, 290.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 gripIndex2 = dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)[0]
                 dType.SetWAITCmd(api, 1500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 186.84384155273438, -3.0974104404449463, 70.12774658203125, 89.40254211425781, isQueued=1)
@@ -185,28 +185,38 @@ class Dobot():
                 dType.SetPTPCmd(api, movj, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1) 
                 dType.SetPTPCmd(api, movl, 259.43218994140625, 23.712913513183594, 20.419631958007812, 91.50889587402344, isQueued=1)
                 dType.SetPTPCmd(api, movl, 259.43218994140625, 23.712913513183594, 20.419631958007812, 91.50889587402344, isQueued=1)   
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
-                dType.SetWAITCmd(api, 500, isQueued=1)
+                dType.SetWAITCmd(api, 250, isQueued=1)
                 dType.SetPTPCmd(api, movl, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1)    
 
                 if device == 1:
                     dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
                                     [55.460655212402344, 224.66812133789062, 100.73353576660156, 183.70411682128906], isQueued=1 )
                     dType.SetPTPCmd(api, movl, 55.46128463745117, 224.67137145996094, 68.33453369140625, 183.7054901123047, isQueued=1)
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetPTPCmd(api, movl, 55.46128463745117, 224.67137145996094, 100.73353576660156, 183.7054901123047, isQueued=1)
                 elif device == 2:
                     dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
                                     [6.500369548797607, 223.6554718017578, 100.73333740234375, 182.9855194091797], isQueued=1 )
                     dType.SetPTPCmd(api, movl, 6.500369548797607, 223.6554718017578, 68.33453369140625, 182.9855194091797, isQueued=1)
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetPTPCmd(api, movl, 6.500369548797607, 223.6554718017578, 100.73333740234375, 182.9855194091797, isQueued=1)
                 elif device == 4:
                     dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 123.88801574707031, 112.61143493652344], 
                                     [-41.87975311279297, 224.66201782226562, 100.73306274414062, 182.98736572265625], isQueued=1 )
                     dType.SetPTPCmd(api, movl, -41.87975311279297, 224.66201782226562, 68.33453369140625, 182.98736572265625, isQueued=1)
-
-                dType.SetWAITCmd(api, 500, isQueued=1)
-                dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
-                dType.SetWAITCmd(api, 500, isQueued=1)
-                dType.SetPTPCmd(api, movl, 259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344, isQueued=1)
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
+                    dType.SetWAITCmd(api, 250, isQueued=1)
+                    dType.SetPTPCmd(api, movl, -41.87975311279297, 224.66201782226562, 100.73306274414062, 182.98736572265625, isQueued=1)
+                
+                dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
+                                [259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344], isQueued=1 )
 
         # Common execution logic
         if stationNum == 1:
