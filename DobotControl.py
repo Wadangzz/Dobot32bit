@@ -107,6 +107,10 @@ class Dobot():
     def robot(self, stationNum, device):
         movj = dType.PTPMode.PTPMOVJXYZMode
         movl = dType.PTPMode.PTPMOVLXYZMode
+        
+        lastIndex = None
+        gripIndex1 = None
+        gripIndex2 = None
 
         if stationNum not in self.bot:
             raise ValueError(f"Invalid station number: {stationNum}")
@@ -122,6 +126,7 @@ class Dobot():
 
             dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
             dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
+            dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
             dType.SetWAITCmd(api, 250, isQueued=1)
             dType.SetEndEffectorSuctionCup(api, 1, 1, isQueued=1)  # 흡착 ON
             dType.SetWAITCmd(api, 250, isQueued=1)
@@ -131,7 +136,7 @@ class Dobot():
             # device에 따라 달라지는 부분
             if device == 0:
                 dType.SetPTPCmd(api, movj, 5.596028757095337, -267.60247802734375, 40.00385284423828, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.596034049987793, -267.6034240722656, 15.62419891357422, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 5.596034049987793, -267.6034240722656, 25.62419891357422, -27.571914672851562, isQueued=1)
             elif device == 1:
                 dType.SetPTPCmd(api, movl, 5.594710826873779, -288.94573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
                 dType.SetPTPCmd(api, movl, 4.594710826873779, -288.94573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
@@ -163,8 +168,8 @@ class Dobot():
                 dType.SetPTPCmd(api, movl, 196.90408325195312, -2.6424760818481445, 50.249359130859375, 89.40617370605469, isQueued=1)
 
             elif device == 1:
-                dType.SetPTPCmd(api, movj, 59.901798248291016, -196.02142333984375, 114.29156494140625, 17.208480834960938 , isQueued=1)  
-                dType.SetPTPCmd(api, movj, 59.901798248291016, -196.02142333984375, 114.29156494140625, 17.208480834960938 , isQueued=1)     
+                dType.SetPTPCmd(api, movj, -0.7725620269775391, -204.97116088867188, 114.29161834716797, 0 , isQueued=1)
+                dType.SetPTPCmd(api, movj, 59.901798248291016, -196.02142333984375, 114.29156494140625, 17.208480834960938 , isQueued=1) 
                 dType.SetARCCmd(api, [138.06761169433594, -140.7730255126953, 80.834869384765625, 44.66006088256836], 
                                 [186.84396362304688, -3.5974104404449463, 50.2476806640625, 89.40254211425781], isQueued=1 )
                 dType.SetPTPCmd(api, movl, 186.84384155273438, -3.5974104404449463, 17.12774658203125, 89.40254211425781, isQueued=1)
@@ -223,7 +228,7 @@ class Dobot():
             lastIndex = dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)[0]
         elif stationNum == 2:
             lastIndex = dType.SetPTPCmd(api, movj, -0.7725620269775391, -204.97116088867188, 114.29161834716797, 0, isQueued=1)[0]
-        elif stationNum == 4:
+        elif stationNum == 3:
             lastIndex = dType.SetPTPCmd(api, movj, 259.4306335449219, 23.712833404541016, 81.51910400390625, 91.5084228515625, isQueued=1)[0]
             
         dType.SetQueuedCmdStartExec(api)
@@ -246,7 +251,7 @@ class Dobot():
                     self.plc.SetDevice("M205", 0)
                 break
 
-            if stationNum == 2 and device == 0:
+            if stationNum == 2:
                 if dType.GetQueuedCmdCurrentIndex(api)[0] == gripIndex1:
                     self.plc.SetDevice("M203", 1)
                     time.sleep(0.01)

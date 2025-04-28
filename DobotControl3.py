@@ -11,7 +11,9 @@ class Dobot():
             dType.DobotConnect.DobotConnect_NoError:  "DobotConnect_NoError",
             dType.DobotConnect.DobotConnect_NotFound: "DobotConnect_NotFound",
             dType.DobotConnect.DobotConnect_Occupied: "DobotConnect_Occupied"}
-
+        
+        self.plc = win32com.client.Dispatch("ActUtlType.ActUtlType")
+        
         self.api1 = dType.load()
         self.api2 = dType.load()
         self.api3 = dType.load()
@@ -27,7 +29,7 @@ class Dobot():
         self.isConnected1 = False
         self.isConnected2= False
         self.isConnected3 = False
-        self.plc = win32com.client.Dispatch("ActUtlType.ActUtlType")
+        
         
     def connect(self,stationNum,_num):
 
@@ -139,7 +141,7 @@ class Dobot():
             if _Device == 0:
                 
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
-                dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
+                dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
                 dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
                 dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
@@ -147,8 +149,8 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
                 dType.SetPTPCmd(api, movj, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movj, 5.596028757095337, -267.60247802734375, 40.00385284423828, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.596034049987793, -267.6034240722656, 15.62419891357422, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movj, 5.596028757095337, -268.00247802734375, 40.00385284423828, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 5.596034049987793, -268.0034240722656, 25.62419891357422, -27.571914672851562, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
@@ -158,7 +160,7 @@ class Dobot():
                 
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
                 dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1) 
-                dType.SetPTPCmd(api, movl,193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
+                dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 193.80259704589844, -96.20050811767578, 14.255363464355469, 64.27061462402344, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
@@ -166,8 +168,8 @@ class Dobot():
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)
                 dType.SetPTPCmd(api, movj, 5.596028757095337, -251.3144073486328, 60.001197814941406, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 5.594710826873779, -288.94573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
-                dType.SetPTPCmd(api, movl, 4.594710826873779, -288.94573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 5.594710826873779, -288.9573974609375, 60.204517364501953, -27.571914672851562, isQueued=1)
+                dType.SetPTPCmd(api, movl, 4.594710826873779, -288.9573974609375, 28.204517364501953, -27.571914672851562, isQueued=1)
                 dType.SetWAITCmd(api, 500, isQueued=1)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=1)  # 흡착 OFF
                 dType.SetWAITCmd(api, 500, isQueued=1)
