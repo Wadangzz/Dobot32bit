@@ -3,7 +3,7 @@
 ## 📘 프로젝트 개요
 
 **Dobot32bit**는 Python 기반으로 Mitsubishi PLC와 통신하여,  
-**이벤트 트리거 기반으로 Dobot Magician 로봇 3대를 제어**하고,  
+PLC 신호를 통해 **Dobot Magician 로봇 3대를 제어**하고,  
 각 로봇의 실시간 포즈(joint angle)를 **PLC_NModbus 서버에 소켓으로 전송**하는 프로젝트입니다.
 
 ---
@@ -41,10 +41,10 @@
 
 | **조건 / 이벤트**       | **동작 내용** |
 |-------------------------|----------------|
-| `X20X` 입력 감지         | PLC에서 로봇 동작 요청 수신 → Dobot 연결 및 경로 실행 |
+| `X20@` 입력 감지         | PLC에서 로봇 동작 요청 수신 → Dobot 연결 및 경로 실행 |
 | 작업 수행 중            | 물체 흡착 → 이동 → 배치 수행<br>실시간 Pose 정보 TCP 전송 (`127.0.0.1:8000`) |
 | 작업 완료               | `Y20X` 출력 → Master PLC에 작업 완료 신호 전달 |
-| `M20X` ON (정지 조건)    | 로봇 동작 일시정지 (`SetQueuedCmdStopExec`) |
-| `M20X` OFF              | 일시정지 해제 후 재시작 (`SetQueuedCmdStartExec`) |
+| `M20@` ON (정지 조건)    | 로봇 동작 일시정지 (`SetQueuedCmdStopExec`) |
+| `M20@` OFF              | 일시정지 해제 후 재시작 (`SetQueuedCmdStartExec`) |
 | `X21A` ON (비상 정지)    | 모든 명령 큐 클리어 (`SetQueuedCmdClear`) + 흡착 해제<br>`M205` 신호 전송 (2번 로봇 그리퍼 리셋) |
 
