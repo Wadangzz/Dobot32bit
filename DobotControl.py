@@ -4,7 +4,7 @@ import time
 
 
 class Dobot():
-
+    
     def __init__(self):
 
         self.CON_STR = {
@@ -12,7 +12,6 @@ class Dobot():
             dType.DobotConnect.DobotConnect_NotFound: "DobotConnect_NotFound",
             dType.DobotConnect.DobotConnect_Occupied: "DobotConnect_Occupied"}
 
-        # 로봇 3대의 API를 저장하는 딕셔너리(추가될 로봇 수에 따라 확장 가능)
         self.bot = {
             1: {
                 "api": dType.load(),
@@ -60,7 +59,7 @@ class Dobot():
                 dType.SetQueuedCmdClear(api)
                 dType.SetHOMEParams(api, -0.7725620269775391, -202.97116088867188, 114.29161834716797, 0, isQueued = 1)
                 dType.SetPTPJointParams(api, 100, 100, 100, 100, 150, 150, 150, 150, isQueued = 1)
-                dType.SetPTPCommonParams(api, 70, 70, isQueued = 1)
+                dType.SetPTPCommonParams(api, 90, 90, isQueued = 1)
                 dType.SetARCCommonParams(api, 200, 200, isQueued = 1)
                 dType.SetHOMECmdEx(api, 1, isQueued=1)
                 # 로봇에 따라 위치 다르게 설정
@@ -81,8 +80,7 @@ class Dobot():
             bot["isConnected"] = False
 
             print('PLC 연결 해제 완료')
-    
-    # 로봇의 현재 위치를 반환하는 함수
+
     def GetPose(self,stationNum):
         bot = self.bot[stationNum]
         api = bot["api"]
@@ -102,7 +100,7 @@ class Dobot():
         api = self.bot[stationNum]["api"]
         dType.SetHOMEParams(api, -0.7725620269775391, -202.97116088867188, 114.29161834716797, 0, isQueued = 0)
         dType.SetPTPJointParams(api, 100, 100, 100, 100, 150, 150, 150, 150, isQueued = 0)
-        dType.SetPTPCommonParams(api, 70, 70, isQueued = 0)
+        dType.SetPTPCommonParams(api, 90, 90, isQueued = 0)
         dType.SetARCCommonParams(api, 200, 200, isQueued = 0)
         dType.SetHOMECmdEx(api, 1, isQueued=0)
         if stationNum == 1:
@@ -114,10 +112,6 @@ class Dobot():
     def robot(self, stationNum, device):
         movj = dType.PTPMode.PTPMOVJXYZMode
         movl = dType.PTPMode.PTPMOVLXYZMode
-        
-        lastIndex = None
-        gripIndex1 = None
-        gripIndex2 = None
 
         if stationNum not in self.bot:
             raise ValueError(f"Invalid station number: {stationNum}")
@@ -175,7 +169,7 @@ class Dobot():
                 dType.SetWAITCmd(api, 1500, isQueued=1)
                 dType.SetPTPCmd(api, movl, 196.90408325195312, -2.6424760818481445, 50.249359130859375, 89.40617370605469, isQueued=1)
 
-            elif device == 1:
+            elif device == 1: # 로봇 2는 외부 공압 컴프레셔에서 그리퍼 연결해서 사용함함
                 dType.SetPTPCmd(api, movj, -0.7725620269775391, -204.97116088867188, 114.29161834716797, 0 , isQueued=1)
                 dType.SetPTPCmd(api, movj, 59.901798248291016, -196.02142333984375, 114.29156494140625, 17.208480834960938 , isQueued=1) 
                 dType.SetARCCmd(api, [138.06761169433594, -140.7730255126953, 80.834869384765625, 44.66006088256836], 
@@ -231,7 +225,7 @@ class Dobot():
                 dType.SetARCCmd(api, [229.1664581298828, 113.18804168701172, 100.88801574707031, 112.61143493652344], 
                                 [259.43060302734375, 23.712770462036133, 81.5190658569336, 91.50889587402344], isQueued=1 )
 
-        # 각각의 로봇의 마지막 자세
+        # Common execution logic
         if stationNum == 1:
             lastIndex = dType.SetPTPCmd(api, movj, 193.80259704589844, -96.20050811767578, 73.77569580078125, 64.2706069946289, isQueued=1)[0]
         elif stationNum == 2:
@@ -242,10 +236,7 @@ class Dobot():
         # Teaching한 경로를 순서대로 Dequeue하여 로봇 동작한다
         dType.SetQueuedCmdStartExec(api)
 
-
-        # 로봇의 마지막 자세 도달 전에 특정 이벤트 발생 시 로봇 동작 중지
         while lastIndex > dType.GetQueuedCmdCurrentIndex(api)[0]:
-            # 각 로봇 일시정지, 재개 가능
             stop_flag = f"M{200 + stationNum - 1}"
             if not bot["isStop"] and self.plc.GetDevice(stop_flag)[1] == 1:
                 bot["isStop"] = True
@@ -253,18 +244,16 @@ class Dobot():
             elif bot["isStop"] and self.plc.GetDevice(stop_flag)[1] == 0:
                 bot["isStop"] = False
                 dType.SetQueuedCmdStartExec(api)
-            # 로봇 전체 정지, 완전 리셋
+
             if self.plc.GetDevice("X21A")[1] == 1:
                 dType.SetQueuedCmdClear(api)
                 dType.SetEndEffectorSuctionCup(api, 1, 0, isQueued=0)
-                if stationNum == 2:
+                if stationNum == 2: # 로봇 2는 공압 그리퍼까지 OFF
                     self.plc.SetDevice("M205", 1)
                     time.sleep(0.01)
                     self.plc.SetDevice("M205", 0)
                 break
-            
-            # 로봇 2는 그리퍼를 공압으로 따로 제어해야 해서
-            # 그리퍼 동작 인덱스에 따라 M203, M205를 ON/OFF하여 Master PLC에 신호를 보낸다
+
             if stationNum == 2:
                 if dType.GetQueuedCmdCurrentIndex(api)[0] == gripIndex1:
                     self.plc.SetDevice("M203", 1)
