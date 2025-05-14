@@ -31,9 +31,9 @@ PLC 신호를 통해 **Dobot Magician 로봇 3대를 제어**하고,
 |------|------|
 | `DobotDllType.py` | Dobot SDK DLL 구조 정의 (ctypes 기반 구조체 및 API 래핑) |
 | `DobotControl.py` | 로봇 1~3의 연결, 동작 처리, 포즈 수집 및 PLC 통신 담당 |
-| `robot1_refac.py` | Dobot 1번 제어 및 포즈 전송, 이벤트: X200, Y200 |
-| `robot2_refac.py` | Dobot 2번 제어 및 포즈 전송, 이벤트: X201, Y201, M203, M205 |
-| `robot3_refac.py` | Dobot 3번 제어 및 포즈 전송, 이벤트: X202, Y202 |
+| `robot1.py` | Dobot 1번 제어 및 포즈 전송, 이벤트: X200, Y200 |
+| `robot2.py` | Dobot 2번 제어 및 포즈 전송, 이벤트: X201, Y201, M203, M205 |
+| `robot3.py` | Dobot 3번 제어 및 포즈 전송, 이벤트: X202, Y202 |
 
 ---
 
