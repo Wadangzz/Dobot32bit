@@ -6,7 +6,7 @@
 PLC 신호를 통해 **Dobot Magician 로봇 3대를 제어**하고,  
 각 로봇의 실시간 포즈(joint angle)를 **PLC_NModbus 서버에 소켓으로 전송**하는 프로젝트입니다.
 
-Dobot SDK와 Mitsubishi MX Component ActUtlType.dll를 import 하려면
+Dobot SDK와 Mitsubishi MX Component ActUtlType.dll를 import 하려면   
 Python 32bit 환경을 구축해야 합니다.(사용한 Python version 3.9)
 
 ```
